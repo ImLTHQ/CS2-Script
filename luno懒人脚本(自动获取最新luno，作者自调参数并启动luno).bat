@@ -1,15 +1,34 @@
-::init
+:: è®¾ç½®
 @echo off
-title lunoÀÁÈË½Å±¾(×Ô¶¯»ñÈ¡×îĞÂluno£¬×÷Õß×Ôµ÷²ÎÊı²¢Æô¶¯luno)
-echo »ñÈ¡Luno
-powershell wget -o C:\Luno\LunoLoader.exe https://lunocs2.ru/request?downloadLoader && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
-echo »ñÈ¡²ÎÊı
-powershell wget -o C:\Luno\luno-main.cfg https://github.com/ImLTHQ/CS2-Script/releases/download/main/luno-main.cfg && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
+title lunoæ‡’äººè„šæœ¬(è‡ªåŠ¨è·å–æœ€æ–°lunoï¼Œä½œè€…è‡ªè°ƒå‚æ•°å¹¶å¯åŠ¨luno)
+set lunoURL=https://lunocs2.ru/request?downloadLoader
+set configURL=https://github.com/ImLTHQ/CS2-Script/releases/download/main/luno-main.cfg
+set folder=C:\Luno
+echo æ–‡ä»¶é‡Šæ”¾ç›®å½•"%folder%"
 
-::run
-echo ×¼±¸ÔËĞĞluno£¬À¶É«°´Å¥ÊÇ×¢Èë(×¢Òâ£º°ÑÄ¬ÈÏÆôÓÃ°´Å¥¹ØÁË£¡¿ªÆôÊ±×¢Èë»á°²×°µÚÈı·½ä¯ÀÀÆ÷)
-C:\Luno\LunoLoader.exe
+:: æ£€æŸ¥
+:checkFolder
+if exist "%folder%" (
+GOTO :download
+) else (
+    echo æœªæ‰¾åˆ°%folder%,æ­£åœ¨åˆ›å»º
+    md %folder% && echo åˆ›å»ºæˆåŠŸ
+    GOTO :download
+)
 
+:: ä¸‹è½½
+:download
+echo ä¸‹è½½Luno
+powershell wget -o %folder%\LunoLoader.exe %lunoURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
+echo ä¸‹è½½å‚æ•°
+powershell wget -o %folder%\luno-main.cfg %configURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
+
+:: å¯åŠ¨
+echo å¯åŠ¨lunoï¼Œè“è‰²æŒ‰é’®æ˜¯æ³¨å…¥(æ³¨æ„ï¼šæŠŠé»˜è®¤å¯ç”¨æŒ‰é’®å…³äº†ï¼å¼€å¯æ—¶æ³¨å…¥ä¼šå®‰è£…ç¬¬ä¸‰æ–¹æµè§ˆå™¨)
+%folder%\LunoLoader.exe
+
+:: ç»“æŸ
 :end
+echo è¿è¡Œç»“æŸ
 pause
 exit
