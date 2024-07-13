@@ -7,13 +7,6 @@ set folder=C:\Luno
 echo 文件释放目录"%folder%"
 
 :: 检查
-:checkAdmin
-net session >nul 2>&1 && (
-    GOTO :checkFolder
-) || (
-    echo 请以管理员身份运行！
-    GOTO :end
-)
 :checkFolder
 if exist "%folder%" (
 GOTO :downloadController
