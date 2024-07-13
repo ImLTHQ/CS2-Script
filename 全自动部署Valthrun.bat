@@ -1,53 +1,56 @@
-:: ×¼±¸
+:: è®¾ç½®
 @echo off
-title È«×Ô¶¯²¿ÊğValthrun
+title å…¨è‡ªåŠ¨éƒ¨ç½²Valthrun
 set controllerURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/controller_fb6b96a.exe
 set radarURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/radar_client_fb6b96a.exe
 set kdmapperURL=https://github.com/valthrunner/Valthrun/releases/download/4/kdmapper.exe
 set driverURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/valthrun-driver.sys
 set folder=D:\CS2-Valthrun
-echo ÎÄ¼şÊÍ·ÅÄ¿Â¼"%folder%"
+echo æ–‡ä»¶é‡Šæ”¾ç›®å½•"%folder%"
 
+:: æ£€æŸ¥
 :checkFolder
 if exist "%folder%" (
-GOTO :controller
+GOTO :downloadController
 ) else (
-    echo Î´ÕÒµ½%folder%,×¼±¸´´½¨ÎÄ¼ş¼Ğ
-    md %folder% && echo ´´½¨³É¹¦
-    GOTO :controller
+    echo æœªæ‰¾åˆ°%folder%,æ­£åœ¨åˆ›å»º
+    md %folder% && echo åˆ›å»ºæˆåŠŸ
+    GOTO :downloadController
 )
 
-:controller
-if exist "%folder%\controller.exe" GOTO :radar
-echo ×¼±¸ÏÂÔØcontroller %controllerURL%
-powershell wget -o %folder%\controller.exe %controllerURL% && echo ³É¹¦ || echo controllerÏÂÔØÊ§°Ü && GOTO :end
+:: ä¸‹è½½
+:downloadController
+if exist "%folder%\controller.exe" GOTO :downloadRadar
+echo ä¸‹è½½controller %controllerURL%
+powershell wget -o %folder%\controller.exe %controllerURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
-:radar
-if exist "%folder%\radar.exe" GOTO :kdmapper
-echo ×¼±¸ÏÂÔØÀ×´ï %radarURL%
-powershell wget -o %folder%\radar.exe %radarURL% && echo ³É¹¦ || echo À×´ïÏÂÔØÊ§°Ü && GOTO :end
+:downloadRadar
+if exist "%folder%\radar.exe" GOTO :downloadKdmapper
+echo ä¸‹è½½é›·è¾¾ %radarURL%
+powershell wget -o %folder%\radar.exe %radarURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
-:kdmapper
-if exist "%folder%\kdmapper.exe" GOTO :driver
-echo ×¼±¸ÏÂÔØkdmapper %kdmapperURL%
-powershell wget -o %folder%\kdmapper.exe %kdmapperURL% && echo ³É¹¦ || echo kdmapperÏÂÔØÊ§°Ü && GOTO :end
+:downloadKdmapper
+if exist "%folder%\kdmapper.exe" GOTO :downloadDriver
+echo ä¸‹è½½kdmapper %kdmapperURL%
+powershell wget -o %folder%\kdmapper.exe %kdmapperURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
-:driver
+:downloadDriver
 if exist "%folder%\driver.sys" GOTO :loadDriver
-echo ×¼±¸ÏÂÔØÇı¶¯ %driverURL%
-powershell wget -o %folder%\driver.sys %driverURL% && echo ³É¹¦ || echo driverÏÂÔØÊ§°Ü && GOTO :end
+echo ä¸‹è½½é©±åŠ¨ %driverURL%
+powershell wget -o %folder%\driver.sys %driverURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
+:: åŠ è½½é©±åŠ¨
 :loadDriver
-echo ¼ÓÔØÇı¶¯(Ê¹ÓÃ kdmapper)
-%folder%\kdmapper.exe %folder%\driver.sys && echo ¼ÓÔØ³É¹¦ || echo ¼ÓÔØÊ§°Ü && GOTO :end
+echo åŠ è½½é©±åŠ¨(ä½¿ç”¨ kdmapper)
+%folder%\kdmapper.exe %folder%\driver.sys && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
-:: Ñ¡Ôñ
+:: é€‰æ‹©
 :main
-echo ÄãÏë×öÊ²Ã´£¿
-echo [1] Æô¶¯Controller
-echo [2] Æô¶¯ÍøÂçÀ×´ï
-echo [3] ÍË³ö
-set /p INPUT="ÇëÊäÈëÑ¡Ïî (1-3): "
+echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo [1] å¯åŠ¨Controller
+echo [2] å¯åŠ¨ç½‘ç»œé›·è¾¾
+echo [3] é€€å‡º
+set /p INPUT="è¯·è¾“å…¥é€‰é¡¹ (1-3): "
 
 if "%INPUT%" == "1" (
     GOTO :loadController
@@ -59,15 +62,17 @@ if "%INPUT%" == "1" (
     GOTO :end
 )
 
+:: å¯åŠ¨
 :loadController
-echo Æô¶¯controller
-%folder%\controller.exe || echo controller·ÇÕı³£ÍË³ö£¬¿ÉÄÜÊÇÃ»ÓĞÆô¶¯CS2¾ÍÆô¶¯½Å±¾µ¼ÖÂµÄ && GOTO :end
+echo å¯åŠ¨controller
+%folder%\controller.exe || echo éæ­£å¸¸é€€å‡ºï¼Œå¯èƒ½æ˜¯æ²¡æœ‰å¯åŠ¨CS2å°±å¯åŠ¨è„šæœ¬å¯¼è‡´çš„ && GOTO :end
 
 :loadRadar
-echo Æô¶¯À×´ï
-%folder%\radar.exe || echo À×´ï·ÇÕı³£ÍË³ö£¬¿ÉÄÜÊÇÃ»ÓĞÆô¶¯CS2¾ÍÆô¶¯½Å±¾µ¼ÖÂµÄ && GOTO :end
+echo å¯åŠ¨é›·è¾¾
+%folder%\radar.exe || echo éæ­£å¸¸é€€å‡ºï¼Œå¯èƒ½æ˜¯æ²¡æœ‰å¯åŠ¨CS2å°±å¯åŠ¨è„šæœ¬å¯¼è‡´çš„ && GOTO :end
 
+:: ç»“æŸ
 :end
-echo ÔËĞĞ½áÊø
+echo è¿è¡Œç»“æŸ
 pause
 exit
