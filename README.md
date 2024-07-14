@@ -1,1 +1,2 @@
 # valthrun与luno的懒人脚本
+Valthrun更新了给我发个Issue，谢谢你好心人
