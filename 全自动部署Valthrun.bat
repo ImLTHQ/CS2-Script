@@ -14,12 +14,12 @@ echo · 为了让 Valthrun 正常工作，必须禁用一些Windows 安全功能。请参考“https://
 echo.
 
 :: 检查
-:checkFolder
 if exist "%folder%" (
 GOTO :downloadController
 ) else (
     echo 未找到%folder%,正在创建
     md %folder% && echo 创建成功
+    echo.
     GOTO :downloadController
 )
 
@@ -46,12 +46,14 @@ powershell wget -o %folder%\driver.sys %driverURL% && echo 成功 || echo 失败 && 
 
 :: 加载驱动
 :loadDriver
+echo.
 echo 以管理员身份加载驱动(使用 kdmapper)
 %folder%\kdmapper.exe %folder%\driver.sys && echo 成功 && GOTO :main
 GOTO :errorKdmapper
 
 :: kdmapper报错
 :errorKdmapper
+echo.
 echo 失败，请以管理员身份重新运行脚本，并截图寻求他人帮助
 echo 请观察终端，找到 [+] DriverEntry returned "内容"
 echo 内容为0xCF000004 是Valthrun 驱动程序已加载
@@ -114,6 +116,7 @@ GOTO :main
 
 :: 结束
 :end
+echo.
 echo 运行结束
 pause
 exit
