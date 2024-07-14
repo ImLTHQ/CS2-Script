@@ -74,7 +74,7 @@ echo [4] 退出
 echo [!] 出错可删除"%folder%"重试或寻求他人帮助
 echo [!] 项目地址 “%githubURL%” ，Star!!!
 
-set /p INPUT="请输入选项 (1-4):"
+set /p INPUT="请输入选项并回车 (1-4):"
 
 if "%INPUT%" == "1" (
     GOTO :loadController

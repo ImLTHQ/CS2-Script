@@ -5,6 +5,7 @@ set lunoURL=https://lunocs2.ru/request?downloadLoader
 set configURL=https://github.com/ImLTHQ/CS2-Script/releases/download/main/luno-main.cfg
 set folder=C:\Luno
 echo ÎÄ¼şÊÍ·ÅÄ¿Â¼"%folder%"
+echo.
 
 :: ¼ì²é
 :checkFolder
@@ -13,12 +14,12 @@ GOTO :download
 ) else (
     echo Î´ÕÒµ½%folder%,ÕıÔÚ´´½¨
     md %folder% && echo ´´½¨³É¹¦
+    echo.
     GOTO :download
 )
 
 :: ÏÂÔØ
 :download
-echo.
 echo ÏÂÔØLuno
 powershell wget -o %folder%\LunoLoader.exe %lunoURL% && echo ³É¹¦ || GOTO :fail
 echo.
@@ -27,12 +28,18 @@ powershell wget -o %folder%\luno-main.cfg %configURL% && echo ³É¹¦ || echo Ê§°Ü£
 
 :: Æô¶¯
 echo.
-echo Æô¶¯luno£¬À¶É«°´Å¥ÊÇ×¢Èë(×¢Òâ£º°ÑÄ¬ÈÏÆôÓÃ°´Å¥¹ØÁË£¡¿ªÆôÊ±×¢Èë»á°²×°µÚÈı·½ä¯ÀÀÆ÷)
+echo ×¼±¸Æô¶¯luno£¬À¶É«°´Å¥ÊÇ×¢Èë£¨×¢Òâ£º°ÑÄ¬ÈÏÆôÓÃ°´Å¥¹ØÁË£¡¿ªÆôÊ±×¢Èë»á°²×°µÚÈı·½ä¯ÀÀÆ÷£©
 echo GUI¿ì½İ¼üÊÇins,³İÂÖÍ¼±êÊÇÉèÖÃ£¬µã½øÈ¥Ñ¡Ôñluno-main£¬È»ºóµãload¼ÓÔØ²ÎÊı
-%folder%\LunoLoader.exe && exit
+%folder%\LunoLoader.exe && GOTO :end
 
-:: ·ÇÕı³£½áÊø
+:: LunoÏÂÔØÊ§°Ü
 :fail
+echo.
 echo LunoLoaderÏÂÔØÊ§°Ü£¬Çë¼ì²éÍøÂçÖØÊÔ£¬±ØÒªÊ±¿ÉÒÔÊ¹ÓÃÍøÂç´úÀí
+pause
+exit
+
+:: ½áÊø
+:end
 pause
 exit
