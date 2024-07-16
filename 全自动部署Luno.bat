@@ -5,6 +5,7 @@ set lunoURL=https://lunocs2.ru/request?downloadLoader
 set configURL=https://github.com/ImLTHQ/CS2-Script/releases/download/main/luno-main.cfg
 set cfgURL=https://lunocs2.ru/request?downloadConfigs
 set folder=C:\Luno
+set githubURL=https://github.com/ImLTHQ/CS2-Script
 
 ::  检查CS
 :checkCS
@@ -58,6 +59,8 @@ del /Q %folder%\configs.zip
 del /Q %folder%\"ОБЯЗАТЕЛЬНО К ПРОЧТЕНИЮ!!!.txt"
 
 :: 启动
+echo.
+echo 项目地址 "%githubURL%" ，Star!!!
 echo.
 echo 准备启动luno，蓝色按钮是注入（注意：把默认启用按钮关了！开启时注入会安装第三方浏览器）
 echo GUI快捷键是ins,齿轮图标是设置，点进去选择luno-main，然后点load加载参数

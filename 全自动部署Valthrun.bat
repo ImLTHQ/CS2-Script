@@ -96,8 +96,8 @@ echo [1] 启动Controller
 echo [2] 启动网络雷达
 echo [3] 帮助
 echo [4] 退出
+echo [#] 项目地址 "%githubURL%" ，Star!!!
 echo [!] 出错可删除"%folder%"重试或寻求他人帮助
-echo [!] 项目地址 “%githubURL%” ，Star!!!
 
 set /p INPUT="请输入选项并回车 (1-4):"
 
