@@ -2,7 +2,7 @@
 title 全自动部署Luno
 :: 变量
 set lunoURL=https://lunocs2.ru/request?downloadLoader
-set configURL=https://github.com/ImLTHQ/CS2-Script/releases/download/main/luno-main.cfg
+set configURL=https://github.com/ImLTHQ/CS2-Script/releases/download/main/Luno-CFG.zip
 set cfgURL=https://lunocs2.ru/request?downloadConfigs
 set folder=C:\Luno
 set githubURL=https://github.com/ImLTHQ/CS2-Script
@@ -16,11 +16,11 @@ if %errorlevel%==0 (
     GOTO :checkFolder
 ) else (
     cls
-    GOTO :startCS
+    GOTO :runCS
 )
 
 :: 启动CS
-:startCS
+:runCS
 echo 启动CS
 echo.
 powershell start "steam://rungameid/730"
@@ -31,34 +31,56 @@ GOTO :checkFolder
 echo 文件释放目录"%folder%"
 
 if exist "%folder%" (
-GOTO :download
+GOTO :downloadLuno
 ) else (
-    echo 未找到%folder%,正在创建
-    md %folder% && echo 创建成功
+    echo - 未找到%folder%,正在创建
+    md %folder% && echo - 创建成功
     echo.
-    GOTO :download
+    GOTO :downloadLuno
 )
 
 :: 下载
-:download
-echo.
+:downloadLuno
 echo 下载Luno
 powershell wget -o %folder%\LunoLoader.exe %lunoURL% && echo - 成功 || GOTO :fail
 
+:downloadConfig
 echo.
 echo 下载参数
-powershell wget -o %folder%\luno-main.cfg %configURL% && echo - 成功 || echo - 失败，仍旧执行下一步
+powershell wget -o %folder%\Luno-CFG.zip %configURL% && GOTO :downloadConfigSuccess || GOTO :downloadConfigFail
 
+:downloadConfigSuccess
+echo - 成功
+echo - 解压缩参数
+tar -xvf %folder%\Luno-CFG.zip -C %folder%
+echo - 删除无用文件
+del /Q %folder%\Luno-CFG.zip
+GOTO :downloadCFG
+
+:downloadConfigFail
+echo - 失败，仍旧执行下一步
+GOTO :downloadCFG
+
+:downloadCFG
 echo.
 echo 从官网下载参数
-powershell wget -o %folder%\configs.zip %cfgURL% && echo - 成功 || echo - 失败，仍旧执行下一步
+powershell wget -o %folder%\configs.zip %cfgURL% && GOTO :downloadCFGSuccess || GOTO :downloadCFGFail
+
+:downloadCFGSuccess
+echo - 成功
 echo - 解压缩参数
 tar -xvf %folder%\configs.zip -C %folder%
-echo 删除无用文件
+echo - 删除无用文件
 del /Q %folder%\configs.zip
 del /Q %folder%\"ОБЯЗАТЕЛЬНО К ПРОЧТЕНИЮ!!!.txt"
+GOTO :runLuno
+
+:downloadCFGFail
+echo - 失败，仍旧执行下一步
+GOTO :runLuno
 
 :: 启动
+:runLuno
 echo.
 echo 项目地址 "%githubURL%" ，Star!!!
 echo.
