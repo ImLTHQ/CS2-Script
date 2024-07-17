@@ -79,13 +79,13 @@ GOTO :errorKdmapper
 :errorKdmapper
 echo.
 echo 失败，请以管理员身份重新运行脚本，并截图寻求他人帮助
-echo 出现“系统无法执行指定的程序”可能是Windows安全中心报毒隔离
+echo 出现"系统无法执行指定的程序"可能是Windows安全中心报毒隔离
 echo 请观察终端，找到 [+] DriverEntry returned "内容"
 echo - 内容为0xCF000004 是Valthrun 驱动程序已加载
 echo - 内容为0xCF000003 是Valthrun 驱动程序初始化失败。
 echo - 内容为0xCF000002 是设置 Valthrun 驱动程序的函数调用失败。
 echo - 内容为0xCF000001 是Valthrun 日志系统无法初始化。这种情况很罕见
-echo - 内容为0xc0000603 请尝试在“Windows安全中心>设备安全性>内核隔离详细信息”中禁用“易受攻击的驱动程序阻止列表”
+echo - 内容为0xc0000603 请尝试在"Windows安全中心>设备安全性>内核隔离详细信息"中禁用"易受攻击的驱动程序阻止列表"
 GOTO :end
 
 :: 选择

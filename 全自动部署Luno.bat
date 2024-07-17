@@ -69,7 +69,6 @@ echo.
 
 :: Luno下载失败
 :fail
-
 echo.
 echo - LunoLoader下载失败，请检查网络重试，必要时可以使用网络代理
 pause
@@ -77,6 +76,5 @@ exit
 
 :: 结束
 :end
-
 pause
 exit
