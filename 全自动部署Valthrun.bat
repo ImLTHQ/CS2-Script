@@ -1,15 +1,15 @@
-:: ÉèÖÃ
+:: è®¾ç½®
 @echo off
-title È«×Ô¶¯²¿ÊğValthrun
-:: ±äÁ¿
-set controllerURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/controller_fb6b96a.exe
-set radarURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/radar_client_fb6b96a.exe
+title å…¨è‡ªåŠ¨éƒ¨ç½²Valthrun
+:: å˜é‡
+set controllerURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.5/controller_dced9bd.exe
+set radarURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.5/radar_client_862f57b.exe
 set kdmapperURL=https://github.com/valthrunner/Valthrun/releases/download/4/kdmapper.exe
-set driverURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.4/valthrun-driver.sys
+set driverURL=https://github.com/Valthrun/Valthrun/releases/download/v0.4.5/valthrun-driver.sys
 set folder=D:\CS2-Valthrun
 set githubURL=https://github.com/ImLTHQ/CS2-Script
 
-::  ¼ì²éCS
+::  æ£€æŸ¥CS
 :checkCS
 tasklist|find /i "cs2.exe"
 
@@ -21,85 +21,85 @@ if %errorlevel%==0 (
     GOTO :startCS
 )
 
-:: Æô¶¯CS
+:: å¯åŠ¨CS
 :startCS
-echo Æô¶¯CS
+echo å¯åŠ¨CS
 echo.
 powershell start "steam://rungameid/730"
 GOTO :checkFolder
 
-:: ¼ì²é
+:: æ£€æŸ¥
 :checkFolder
-echo ÎÄ¼şÊÍ·ÅÄ¿Â¼"%folder%"
-echo ¡¤ Valthrun Wiki https://wiki.valth.run/zh-cn/
-echo ¡¤ ÎªÁËÈÃ Valthrun Õı³£¹¤×÷£¬±ØĞë½ûÓÃÒ»Ğ©Windows °²È«¹¦ÄÜ¡£Çë²Î¿¼ https://wiki.valth.run/zh-cn/troubleshooting/kernel/windows_security_features
+echo æ–‡ä»¶é‡Šæ”¾ç›®å½•"%folder%"
+echo Â· Valthrun Wiki https://wiki.valth.run/zh-cn/
+echo Â· ä¸ºäº†è®© Valthrun æ­£å¸¸å·¥ä½œï¼Œå¿…é¡»ç¦ç”¨ä¸€äº›Windows å®‰å…¨åŠŸèƒ½ã€‚è¯·å‚è€ƒ https://wiki.valth.run/zh-cn/troubleshooting/kernel/windows_security_features
 
 if exist "%folder%" (
 GOTO :downloadController
 ) else (
     echo.
-    echo Î´ÕÒµ½%folder%,ÕıÔÚ´´½¨
-    md %folder% && echo ´´½¨³É¹¦
+    echo æœªæ‰¾åˆ°%folder%,æ­£åœ¨åˆ›å»º
+    md %folder% && echo åˆ›å»ºæˆåŠŸ
     GOTO :downloadController
 )
 
-:: ÏÂÔØ
+:: ä¸‹è½½
 :downloadController
 if exist "%folder%\controller.exe" GOTO :downloadRadar
 echo.
-echo ÏÂÔØcontroller %controllerURL%
-powershell wget -o %folder%\controller.exe %controllerURL% && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
+echo ä¸‹è½½controller %controllerURL%
+powershell wget -o %folder%\controller.exe %controllerURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
 :downloadRadar
 if exist "%folder%\radar.exe" GOTO :downloadKdmapper
 echo.
-echo ÏÂÔØÀ×´ï %radarURL%
-powershell wget -o %folder%\radar.exe %radarURL% && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
+echo ä¸‹è½½é›·è¾¾ %radarURL%
+powershell wget -o %folder%\radar.exe %radarURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
 :downloadKdmapper
 if exist "%folder%\kdmapper.exe" GOTO :downloadDriver
 echo.
-echo ÏÂÔØkdmapper %kdmapperURL%
-powershell wget -o %folder%\kdmapper.exe %kdmapperURL% && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
+echo ä¸‹è½½kdmapper %kdmapperURL%
+powershell wget -o %folder%\kdmapper.exe %kdmapperURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
 :downloadDriver
 if exist "%folder%\driver.sys" GOTO :loadDriver
 echo.
-echo ÏÂÔØÇı¶¯ %driverURL%
-powershell wget -o %folder%\driver.sys %driverURL% && echo ³É¹¦ || echo Ê§°Ü && GOTO :end
+echo ä¸‹è½½é©±åŠ¨ %driverURL%
+powershell wget -o %folder%\driver.sys %driverURL% && echo æˆåŠŸ || echo å¤±è´¥ && GOTO :end
 
-:: ¼ÓÔØÇı¶¯
+:: åŠ è½½é©±åŠ¨
 :loadDriver
 echo.
-echo ÒÔ¹ÜÀíÔ±Éí·İ¼ÓÔØÇı¶¯(Ê¹ÓÃ kdmapper)
-%folder%\kdmapper.exe %folder%\driver.sys && echo ³É¹¦ && GOTO :main
+echo ä»¥ç®¡ç†å‘˜èº«ä»½åŠ è½½é©±åŠ¨(ä½¿ç”¨ kdmapper)
+%folder%\kdmapper.exe %folder%\driver.sys && echo æˆåŠŸ && GOTO :main
 GOTO :errorKdmapper
 
-:: kdmapper±¨´í
+:: kdmapperæŠ¥é”™
 :errorKdmapper
 echo.
-echo Ê§°Ü£¬ÇëÒÔ¹ÜÀíÔ±Éí·İÖØĞÂÔËĞĞ½Å±¾£¬²¢½ØÍ¼Ñ°ÇóËûÈË°ïÖú
-echo ³öÏÖ"ÏµÍ³ÎŞ·¨Ö´ĞĞÖ¸¶¨µÄ³ÌĞò"¿ÉÄÜÊÇWindows°²È«ÖĞĞÄ±¨¶¾¸ôÀë
-echo Çë¹Û²ìÖÕ¶Ë£¬ÕÒµ½ [+] DriverEntry returned "ÄÚÈİ"
-echo - ÄÚÈİÎª0xCF000004 ÊÇValthrun Çı¶¯³ÌĞòÒÑ¼ÓÔØ
-echo - ÄÚÈİÎª0xCF000003 ÊÇValthrun Çı¶¯³ÌĞò³õÊ¼»¯Ê§°Ü¡£
-echo - ÄÚÈİÎª0xCF000002 ÊÇÉèÖÃ Valthrun Çı¶¯³ÌĞòµÄº¯Êıµ÷ÓÃÊ§°Ü¡£
-echo - ÄÚÈİÎª0xCF000001 ÊÇValthrun ÈÕÖ¾ÏµÍ³ÎŞ·¨³õÊ¼»¯¡£ÕâÖÖÇé¿öºÜº±¼û
-echo - ÄÚÈİÎª0xc0000603 Çë³¢ÊÔÔÚ"Windows°²È«ÖĞĞÄ>Éè±¸°²È«ĞÔ>ÄÚºË¸ôÀëÏêÏ¸ĞÅÏ¢"ÖĞ½ûÓÃ"Ò×ÊÜ¹¥»÷µÄÇı¶¯³ÌĞò×èÖ¹ÁĞ±í"
+echo å¤±è´¥ï¼Œè¯·ä»¥ç®¡ç†å‘˜èº«ä»½é‡æ–°è¿è¡Œè„šæœ¬ï¼Œå¹¶æˆªå›¾å¯»æ±‚ä»–äººå¸®åŠ©
+echo å‡ºç°"ç³»ç»Ÿæ— æ³•æ‰§è¡ŒæŒ‡å®šçš„ç¨‹åº"å¯èƒ½æ˜¯Windowså®‰å…¨ä¸­å¿ƒæŠ¥æ¯’éš”ç¦»
+echo è¯·è§‚å¯Ÿç»ˆç«¯ï¼Œæ‰¾åˆ° [+] DriverEntry returned "å†…å®¹"
+echo - å†…å®¹ä¸º0xCF000004 æ˜¯Valthrun é©±åŠ¨ç¨‹åºå·²åŠ è½½
+echo - å†…å®¹ä¸º0xCF000003 æ˜¯Valthrun é©±åŠ¨ç¨‹åºåˆå§‹åŒ–å¤±è´¥ã€‚
+echo - å†…å®¹ä¸º0xCF000002 æ˜¯è®¾ç½® Valthrun é©±åŠ¨ç¨‹åºçš„å‡½æ•°è°ƒç”¨å¤±è´¥ã€‚
+echo - å†…å®¹ä¸º0xCF000001 æ˜¯Valthrun æ—¥å¿—ç³»ç»Ÿæ— æ³•åˆå§‹åŒ–ã€‚è¿™ç§æƒ…å†µå¾ˆç½•è§
+echo - å†…å®¹ä¸º0xc0000603 è¯·å°è¯•åœ¨"Windowså®‰å…¨ä¸­å¿ƒ>è®¾å¤‡å®‰å…¨æ€§>å†…æ ¸éš”ç¦»è¯¦ç»†ä¿¡æ¯"ä¸­ç¦ç”¨"æ˜“å—æ”»å‡»çš„é©±åŠ¨ç¨‹åºé˜»æ­¢åˆ—è¡¨"
 GOTO :end
 
-:: Ñ¡Ôñ
+:: é€‰æ‹©
 :main
 echo.
-echo ÄãÏë×öÊ²Ã´£¿
-echo [1] Æô¶¯Controller
-echo [2] Æô¶¯ÍøÂçÀ×´ï
-echo [3] °ïÖú
-echo [4] ÍË³ö
-echo [#] ÏîÄ¿µØÖ· "%githubURL%" £¬Star!!!
-echo [!] ³ö´í¿ÉÉ¾³ı"%folder%"ÖØÊÔ»òÑ°ÇóËûÈË°ïÖú
+echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo [1] å¯åŠ¨Controller
+echo [2] å¯åŠ¨ç½‘ç»œé›·è¾¾
+echo [3] å¸®åŠ©
+echo [4] é€€å‡º
+echo [#] é¡¹ç›®åœ°å€ "%githubURL%" ï¼ŒStar!!!
+echo [!] å‡ºé”™å¯åˆ é™¤"%folder%"é‡è¯•æˆ–å¯»æ±‚ä»–äººå¸®åŠ©
 
-set /p INPUT="ÇëÊäÈëÑ¡Ïî²¢»Ø³µ (1-4):"
+set /p INPUT="è¯·è¾“å…¥é€‰é¡¹å¹¶å›è½¦ (1-4):"
 
 if "%INPUT%" == "1" (
     GOTO :loadController
@@ -113,35 +113,35 @@ if "%INPUT%" == "1" (
     GOTO :end
 )
 
-:: °ïÖú
+:: å¸®åŠ©
 :help
 echo.
-echo ¡¤ Ã»ÓĞpause¼üÇë²Î¿¼ https://wiki.valth.run/zh-cn/troubleshooting/overlay/pause_key
-echo ¡¤ AMDÓÃ»§ÔÚÔËĞĞControllerºóÓÎÏ·ºÚÆÁÇëÊ¹ÓÃ×¨Òµ°æÏÔ¿¨Çı¶¯»ò½«ÏÔ¿¨Çı¶¯½µ¼¶ÖÁ23.7.1
-echo ¡¤ ÖÕ¶ËÏÔÊ¾¡°Failed to load vulkan-1.dll (os error 14001)¡± Çë²Î¿¼ https://wiki.valth.run/zh-cn/troubleshooting/overlay/amd_opengl ·½°¸2£¬3£¬5
-echo ¡¤ ¸ü¶à¼ÓÔØÇı¶¯·½·¨Çë²Î¿¼ https://wiki.valth.run/zh-cn/getting-started/driver/
+echo Â· æ²¡æœ‰pauseé”®è¯·å‚è€ƒ https://wiki.valth.run/zh-cn/troubleshooting/overlay/pause_key
+echo Â· AMDç”¨æˆ·åœ¨è¿è¡ŒControlleråæ¸¸æˆé»‘å±è¯·ä½¿ç”¨ä¸“ä¸šç‰ˆæ˜¾å¡é©±åŠ¨æˆ–å°†æ˜¾å¡é©±åŠ¨é™çº§è‡³23.7.1
+echo Â· ç»ˆç«¯æ˜¾ç¤ºâ€œFailed to load vulkan-1.dll (os error 14001)â€ è¯·å‚è€ƒ https://wiki.valth.run/zh-cn/troubleshooting/overlay/amd_opengl æ–¹æ¡ˆ2ï¼Œ3ï¼Œ5
+echo Â· æ›´å¤šåŠ è½½é©±åŠ¨æ–¹æ³•è¯·å‚è€ƒ https://wiki.valth.run/zh-cn/getting-started/driver/
 GOTO :main
 
-:: Æô¶¯
+:: å¯åŠ¨
 :loadController
 echo.
-echo Æô¶¯controller
-echo ¡¤ GUI¿ì½İ¼üÊÇpause¡£
-echo ¡¤ Valthrun²»Ö§³ÖCS2È«ÆÁÄ£Ê½
+echo å¯åŠ¨controller
+echo Â· GUIå¿«æ·é”®æ˜¯pauseã€‚
+echo Â· Valthrunä¸æ”¯æŒCS2å…¨å±æ¨¡å¼
 %folder%\controller.exe
-echo ·ÇÕı³£ÍË³ö,´úÂë%ERRORLEVEL%¡£
+echo éæ­£å¸¸é€€å‡º,ä»£ç %ERRORLEVEL%ã€‚
 GOTO :main
 
 :loadRadar
 echo.
-echo Æô¶¯À×´ï
+echo å¯åŠ¨é›·è¾¾
 %folder%\radar.exe
-echo ·ÇÕı³£ÍË³ö,´úÂë%ERRORLEVEL%¡£
+echo éæ­£å¸¸é€€å‡º,ä»£ç %ERRORLEVEL%ã€‚
 GOTO :main
 
-:: ½áÊø
+:: ç»“æŸ
 :end
 echo.
-echo ÔËĞĞ½áÊø
+echo è¿è¡Œç»“æŸ
 pause
 exit
